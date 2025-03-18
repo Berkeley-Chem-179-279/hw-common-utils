@@ -7,11 +7,12 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     g++ \
+    gdb \
     cmake \
     make \
     git \
     libopenblas-dev \
-    liblapack-dev \
+    liblapacke-dev \
     libarpack2-dev \
     libsuperlu-dev \
     libarmadillo-dev \
