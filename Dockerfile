@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y \
     libsuperlu-dev \
     libarmadillo-dev \
     libeigen3-dev \
+    nlohmann-json3-dev \
+    libhdf5-dev \
     python3 \ 
     python-is-python3 \
     python3-pip \
@@ -24,6 +26,18 @@ RUN apt-get update && apt-get install -y \
     python3-setuptools \
     python3-wheel \
     && rm -rf /var/lib/apt/lists/*
+
+# Clone
+RUN git clone --recursive  https://github.com/highfive-devs/highfive.git && \ 
+    cd highfive && \
+    mkdir build && \
+    cd build && \ 
+    cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_DOCS=OFF -DBUILD_TESTS=OFF && \
+    make -j$(nproc) && \
+    make install && \
+    cd ../.. && \ 
+    rm -rf HighFive 
+
 
 # Set up a virtual environment
 RUN python3 -m venv /opt/venv
@@ -34,7 +48,9 @@ ENV PATH="/opt/venv/bin:$PATH"
 # Install Python dependencies inside the virtual environment
 RUN pip install --upgrade pip && \
     pip install \
-        pytest 
+        pytest \
+        numpy \
+        h5py 
 
 WORKDIR /work
 
