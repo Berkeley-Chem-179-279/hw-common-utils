@@ -32,7 +32,7 @@ RUN git clone --recursive  https://github.com/highfive-devs/highfive.git && \
     cd highfive && \
     mkdir build && \
     cd build && \ 
-    cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_DOCS=OFF -DBUILD_TESTS=OFF && \
+    cmake .. -DCMAKE_INSTALL_PREFIX=/usr/local -DHIGHFIVE_UNIT_TESTS=OFF -DHIGHFIVE_BUILD_DOCS=OFF && \
     make -j$(nproc) && \
     make install && \
     cd ../.. && \ 
