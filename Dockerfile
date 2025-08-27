@@ -1,5 +1,5 @@
 # Use an official Ubuntu base image
-FROM ubuntu:25.04
+FROM ubuntu:25.10
 
 # Set noninteractive mode for apt
 ENV DEBIAN_FRONTEND=noninteractive
